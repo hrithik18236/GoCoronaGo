@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy #We can rep our database structures as classes and you will be hearing those classes as MODELS.
-from F import LoginForm
+from authentication import LoginForm
 
 app = Flask(__name__)
 
@@ -77,11 +77,10 @@ def index(usr):
 def Contact():
 	if request.method=='POST':
 		"""Add entry to the database here"""
-		Your Name = request.form.get('name')
-		Your Email = request.form.get('email')
+		YourName = request.form.get('name')
+		YourEmail = request.form.get('email')
 		Subject = request.form.get('subject')
 		Message = request.form.get('message')
-
     return render_template('contact.html')
 
 
