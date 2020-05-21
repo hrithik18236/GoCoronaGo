@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return render_template("homePage.html")
+    return render_template("login.html")
 
 database={'nachi':'123','james':'aac','karthik':'asdsf'}
 
