@@ -81,7 +81,7 @@ def Contact():
 		YourEmail = request.form.get('email')
 		Subject = request.form.get('subject')
 		Message = request.form.get('message')
-    return render_template('contact.html')
+	return render_template('contact.html')
 
 
 # @app.route('/signup')
