@@ -36,7 +36,7 @@
         <div class="header" style="background-color: #606EB3;">
             <div class="header-left">
                 <a href="{{url_for('index')}}" class="logo">
-                    <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Ivy Opus</span>
+                    <img src="{{url_for('static', filename='assets/img/logoo.png')}}" width="100" height="90" alt=""> <span></span>
                 </a>
             </div>
             <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -73,10 +73,12 @@
                                 <li><a href="{{url_for('AvailableJobs')}}">Available Jobs</a></li>
                             </ul>
                         </li>
+
+
                         <li>
                             <a href="{{url_for('EmployeeInterview')}}"><i class="fa fa-dashboard"></i> <span>Interviews</span></a>
                         </li>
-
+                    </ul>
                     </ul>
                 </div>
             </div>
