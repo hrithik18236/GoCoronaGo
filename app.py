@@ -51,7 +51,7 @@ class EMPLOYER(db.Model):
 	SECTOR_TYPE = db.Column(db.Integer, nullable=False)
 	PASSWORD = db.Column(db.String(20), nullable=False)
 	WEBSITE = db.Column(db.String(20), nullable=True)
-	PHONE = db.Column(db.Integer, nullable=False)
+	PHONE = db.Column(db.String(20), nullable=False)
 
 
 # class USERS(db.Model):
@@ -196,18 +196,20 @@ def Employer():
 		PHONE = request.form.get('Phone')
 		
 			# entry=EMPLOYER(NAME = Name, USERNAME = Username,PASSWORD=Password, COMPANY_NAME=CompName,COMPANY_SIZE=CompSize, WEBSITE=Website,POSITION=Position,SECTOR_TYPE=SectType,SECTORNAME=SectName)
-		insert = "insert into EMPLOYER values(?,?,?,?,?,?,?,?,?,?,?)"
-		params = (NAME,USERNAME,PASSWORD,COMPANY_SIZE,COMPANY_NAME,PHONE,POSITION,SECTOR_TYPE,SECTORNAME,WEBSITE,EMAIL_ID)
+		# insert = "insert into EMPLOYER values(?,?,?,?,?,?,?,?,?,?,?)"
+		# params = (NAME,USERNAME,PASSWORD,COMPANY_SIZE,COMPANY_NAME,PHONE,POSITION,SECTOR_TYPE,SECTORNAME,WEBSITE,EMAIL_ID)
+		# stmt_insert = ibm_db.prepare(ibm_db_conn, insert)
+		# ibm_db.execute(stmt_insert,params)
 
 
 	return render_template('Employer.html')
 
-@app.route('/contactUs', methods=['POST', 'GET'])
+@app.route('/contactus', methods=['POST', 'GET'])
 def Contact():
-	select="select * from CONTACTUS"
-	cur = conn.cursor()
-	cur.execute(select)
-	row = cur.fetchall()
+	# select="select * from CONTACTUS"
+	# cur = conn.cursor()
+	# cur.execute(select)
+	# row = cur.fetchall()
 	if request.method=='POST':
 		"""Add entry to the database here"""
 		YourName = request.form.get('name')
@@ -216,6 +218,7 @@ def Contact():
 		Message = request.form.get('message')
 
 		# entry=CONTACTUS(YOUR_NAME=name, YOUR_EMAIL=email,SUBJECT=subject,MESSAGE=message)
+		# I want to run these 4 lines, when the contactus button is clicked
 		insert = "insert into CONTACTUS values(?,?,?,?)"
 		params = (YourEmail, YourName, Subject, Message)
 		stmt_insert = ibm_db.prepare(ibm_db_conn, insert)
@@ -264,5 +267,5 @@ def EmployeeUnorganized():
 
 	return render_template('EmployeeUnorganized.html')      
 
-if '__name__' == '__main__':
-	app.run(debug=True) 
+# if '__name__' == '__main__':
+app.run(debug=True) 
