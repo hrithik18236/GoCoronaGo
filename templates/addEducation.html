@@ -14,11 +14,26 @@
 </head>
 
 <body>
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "10248de8-0a81-41d1-8135-51cdee7b8a69", // The ID of this integration.
+            region: "us-south", // The region your integration is hosted in.
+            serviceInstanceID: "75bc5928-90c9-4b66-976e-5f858baf9771", // The ID of your service instance.
+            onLoad: function(instance) {
+                instance.render();
+            }
+        };
+        setTimeout(function() {
+            const t = document.createElement('script');
+            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+            document.head.appendChild(t);
+        });
+    </script>
     <div class="main-wrapper">
-        <div class="header">
+        <div class="header" style="background-color: #606EB3;">
             <div class="header-left">
                 <a href="{{url_for('index')}}" class="logo">
-                    <img src="{{ url_for('static', filename='assets/img/logo.png')}}" width="35" height="35" alt=""> <span>Ivy Opus</span>
+                    <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Ivy Opus</span>
                 </a>
             </div>
             <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>

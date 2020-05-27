@@ -19,11 +19,26 @@
 </head>
 
 <body>
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "10248de8-0a81-41d1-8135-51cdee7b8a69", // The ID of this integration.
+            region: "us-south", // The region your integration is hosted in.
+            serviceInstanceID: "75bc5928-90c9-4b66-976e-5f858baf9771", // The ID of your service instance.
+            onLoad: function(instance) {
+                instance.render();
+            }
+        };
+        setTimeout(function() {
+            const t = document.createElement('script');
+            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+            document.head.appendChild(t);
+        });
+    </script>
     <div class="main-wrapper">
-        <div class="header">
+        <div class="header" style="background-color: #606EB3;">
             <div class="header-left">
                 <a href="{{url_for('index')}}" class="logo">
-                    <img src="{{ url_for('static', filename='assets/img/logo.png')}}" width="35" height="35" alt=""> <span>Ivy Opus</span>
+                    <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Ivy Opus</span>
                 </a>
             </div>
             <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -73,7 +88,7 @@
                     <div class="col-sm-8 col-6">
                         <h4 class="page-title">
 
-                            <b style="color: #009EFB">Congratulations </b>You have been selected for <b>Interview</b> in the following companies</h4>
+                            <b style="color: #606EB3;">Congratulations </b>You have been selected for <b>Interview</b> in the following companies</h4>
                     </div>
                     <br><br><br>
                 </div>
@@ -119,7 +134,7 @@
                                             11:00 AM
                                         </td>
                                         <td class="text-left">
-                                            <a href="{{url_for('startMeeting')}}" class="btn btn-outline-primary take-btn">Start Meeting</a>
+                                            <a href="{{url_for('startMeeting')}}" class="btn btn-outline-primary take-btn" style="border-color: #606EB3; color: #606EB3;">Start Meeting</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -148,7 +163,7 @@
                                             11:00 AM
                                         </td>
                                         <td class="text-left">
-                                            <a href="{{url_for('startMeeting')}}" class="btn btn-outline-primary take-btn">Start Meeting</a>
+                                            <a href="{{url_for('startMeeting')}}" class="btn btn-outline-primary take-btn" style="border-color: #606EB3; color: #606EB3;">Start Meeting</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -177,7 +192,7 @@
                                             11:00 AM
                                         </td>
                                         <td class="text-left">
-                                            <a href="{{url_for('startMeeting')}}" class="btn btn-outline-primary take-btn">Start Meeting</a>
+                                            <a href="{{url_for('startMeeting')}}" class="btn btn-outline-primary take-btn" style="border-color: #606EB3; color: #606EB3;">Start Meeting</a>
                                         </td>
                                     </tr>
 
@@ -192,7 +207,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body text-center">
-                        <img src="{{ url_for('static', filename='assets/img/sent.png')}}" alt="" width="50" height="46">
+                        <img src="assets/img/sent.png" alt="" width="50" height="46">
                         <h3>Are you sure want to delete this Leave Request?</h3>
                         <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
                             <button type="submit" class="btn btn-danger">Delete</button>
