@@ -9,9 +9,7 @@ app.config['SECRET_KEY'] = '457486afbc06732795658e96ba989d1a'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/db_gcg'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Connect to DB2
-conn_str='database=BLUDB;hostname=dashdb-txn-sbox-yp-dal09-08.services.dal.bluemix.net;port=50000;protocol=tcpip;uid=dps35835;pwd=PleaseGoCovid19@2020'
-ibm_db_conn = ibm_db.connect(conn_str,'','')
-conn = ibm_db_dbi.Connection(ibm_db_conn)
+
 
 db = SQLAlchemy(app) #SQLAlchemy Database Instance Gets Created here. 
 
@@ -181,27 +179,33 @@ def login():
 	return render_template('login.html')
 
 
-@app.route('/Employer', methods=['POST', 'GET'])	
+@app.route('/Employer', methods=['POST','GET'])	
 def Employer():
 	if request.method=='POST':
-		NAME = request.form.get('Name')
-		USERNAME = request.form.get('Username')
-		PASSWORD = request.form.get('Password')
-		COMPANY_NAME = request.form.get('CompName')
-		COMPANY_SIZE = request.form.get('CompSize')
-		EMAIL_ID = request.form.get('Email')
-		POSITION = request.form.get('Position')
-		SECTOR_TYPE = request.form.get('sectorType')
-		SECTORNAME = request.form.get('SectName')
-		PHONE = request.form.get('Phone')
-		
-			# entry=EMPLOYER(NAME = Name, USERNAME = Username,PASSWORD=Password, COMPANY_NAME=CompName,COMPANY_SIZE=CompSize, WEBSITE=Website,POSITION=Position,SECTOR_TYPE=SectType,SECTORNAME=SectName)
-		# insert = "insert into EMPLOYER values(?,?,?,?,?,?,?,?,?,?,?)"
-		# params = (NAME,USERNAME,PASSWORD,COMPANY_SIZE,COMPANY_NAME,PHONE,POSITION,SECTOR_TYPE,SECTORNAME,WEBSITE,EMAIL_ID)
-		# stmt_insert = ibm_db.prepare(ibm_db_conn, insert)
-		# ibm_db.execute(stmt_insert,params)
-
-
+		conn.tables('DPS35835', 'EMPLOYER')
+		conn_str='database=BLUDB;hostname=dashdb-txn-sbox-yp-dal09-08.services.dal.bluemix.net;port=50000;protocol=tcpip;uid=dps35835;pwd=PleaseGoCovid19@2020'
+		ibm_db_conn = ibm_db.connect(conn_str,'','')
+		conn = ibm_db_dbi.Connection(ibm_db_conn)
+		NAME = str(request.form.get('Name'))
+		USERNAME = str(request.form.get('Username'))
+		EMAIL_ID = str(request.form.get('Email'))
+		SECTOR_TYPE = str(request.form.get('sectType'))
+		SECTORNAME = str(request.form.get('SectName'))
+		COMPANY_NAME = str(request.form.get('CompName'))
+		POSITION = str(request.form.get('Position'))
+		COMPANY_SIZE = str(request.form.get('CompSize'))
+		# COMPANY_SIZE = int(COMPANY_SIZE)
+		PHONE = str(request.form.get('Phone'))
+		WEBSITE = str(request.form.get('Website'))
+		PASSWORD = str(request.form.get('Password'))
+		# entry=EMPLOYER(NAME = NAME, USERNAME = Us,PASSWORD=Password, COMPANY_NAME=CompName,COMPANY_SIZE=CompSize, WEBSITE=Website,POSITION=Position,SECTOR_TYPE=SectType,SECTORNAME=SectName)
+		insert = "insert into EMPLOYER values("+NAME+","+USERNAME+","+EMAIL_ID+","+PASSWORD+","+COMPANY_NAME+","+COMPANY_SIZE+","+POSITION+","+PHONE+","+SECTORNAME+","+SECTOR_TYPE+","+WEBSITE+")"
+		# params = (NAME,USERNAME,EMAIL_ID,PASSWORD,COMPANY_NAME,COMPANY_SIZE,POSITION,PHONE,SECTORNAME,SECTOR_TYPE,WEBSITE)
+		# print(params)
+		cur = conn.cursor()
+		cur.execute(insert)
+		stmt_insert = ibm_db.prepare(ibm_db_conn, insert)
+		ibm_db.execute(stmt_insert,params)
 	return render_template('Employer.html')
 
 @app.route('/contactus', methods=['POST', 'GET'])
